@@ -4,8 +4,9 @@ import styles from '@/styles/Home.module.css';
 import { getUsers } from '@/services/users-api';
 import { User } from '@/types';
 import { useEffect, useState } from 'react';
-import { UserList } from '@/components/user';
+import { UserDelete, UserList } from '@/components/user';
 import { Header } from '@/components/ui';
+import { Modal } from '@/components/ui/modal';
 
 interface HomeProps {
   users: User[];
@@ -31,6 +32,9 @@ export default function Home({ users }: HomeProps) {
       <main className={styles.main}>
         <Header />
         {usersLoaded && <UserList users={users} />}
+        <Modal>
+          <UserDelete />
+        </Modal>
       </main>
     </>
   );
