@@ -1,9 +1,13 @@
-import { DeleteIcon } from "./delete-icon";
+import { DeleteIcon } from './delete-icon';
 
-export function DeleteButton() {
+interface DeleteButtonProps {
+  onClick: () => void;
+}
+
+export function DeleteButton({ onClick }: DeleteButtonProps) {
   return (
-    <button>
-      <DeleteIcon classes="h-6 w-6"/>
+    <button onClick={onClick}>
+      <DeleteIcon classes="h-6 w-6" />
     </button>
   );
 }

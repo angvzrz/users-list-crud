@@ -3,7 +3,7 @@ import styles from '@/styles/Home.module.css';
 
 import { getUsers } from '@/services/users-api';
 import { User } from '@/types';
-import { useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { UserDelete, UserList } from '@/components/user';
 import { Header } from '@/components/ui';
 import { Modal } from '@/components/ui/modal';
@@ -12,8 +12,18 @@ interface HomeProps {
   users: User[];
 }
 
+interface IAppContext {
+  setCrudAction: (action: string) => void;
+}
+
+export const CrudActionContext = createContext<IAppContext>({
+  setCrudAction: () => {},
+});
+
 export default function Home({ users }: HomeProps) {
   const [usersLoaded, setUsersLoaded] = useState<boolean>(false);
+  const [crudAction, setCrudAction] = useState<string>('');
+  const [modalContent, setModalContent] = useState<JSX.Element>(<></>);
 
   useEffect(() => {
     if (users) {
@@ -21,8 +31,17 @@ export default function Home({ users }: HomeProps) {
     }
   }, [users]);
 
+  useEffect(() => {
+    if (crudAction === 'user-delete') {
+      setModalContent(<UserDelete />);
+    } else if (crudAction === 'user-details') {
+    } else if (crudAction === 'user-edit') {
+    } else if (crudAction === 'user-form') {
+    }
+  }, [crudAction]);
+
   return (
-    <>
+    <CrudActionContext.Provider value={{ setCrudAction }}>
       <Head>
         <title>Users List</title>
         <meta name="description" content="CRUD UI of users" />
@@ -32,11 +51,9 @@ export default function Home({ users }: HomeProps) {
       <main className={styles.main}>
         <Header />
         {usersLoaded && <UserList users={users} />}
-        <Modal>
-          <UserDelete />
-        </Modal>
+        {crudAction && <Modal>{modalContent}</Modal>}
       </main>
-    </>
+    </CrudActionContext.Provider>
   );
 }
 
