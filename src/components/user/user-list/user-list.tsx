@@ -11,15 +11,7 @@ export function UserList({ users }: UserListProps) {
   const [userRows, setUserRows] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
-    const rows = users.map((user) => (
-      <UserRow
-        key={user.id}
-        fullName={`${user.firstname} ${user.lastname}`}
-        email={user?.email || ''}
-        birthDate={user?.birth_date || ''}
-      />
-    ));
-
+    const rows = users.map((user) => <UserRow key={user.id} user={user} />);
     setUserRows(rows);
   }, [users]);
 
