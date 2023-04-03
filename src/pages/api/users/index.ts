@@ -6,7 +6,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { data, error } = await supabase.from('users').select('*');
+  const { data, error } = await supabase
+    .from('users')
+    .select('*, address:addresses(*)');
 
   if (error) {
     res.status(500).json({ error: error.message });

@@ -1,10 +1,10 @@
 import { DeleteButton, EditButton } from '@/components/ui';
 import { AppContext } from '@/pages';
-import { User } from '@/types';
+import { UserFullData } from '@/types';
 import { useContext } from 'react';
 
 interface UserRowProps {
-  user: User;
+  user: UserFullData;
 }
 
 export function UserRow({ user }: UserRowProps) {
@@ -17,6 +17,11 @@ export function UserRow({ user }: UserRowProps) {
     setSelectedUser(user);
   };
 
+  const handleEditClick = () => {
+    setCrudAction('user-edit');
+    setSelectedUser(user);
+  };
+
   return (
     <tr className="hover:bg-gray-50">
       <td className="px-4 py-6">{fullName}</td>
@@ -25,7 +30,7 @@ export function UserRow({ user }: UserRowProps) {
       <td className="px-4 py-6">
         <div className="flex justify-end gap-4">
           <DeleteButton onClick={handleDeleteClick} />
-          <EditButton />
+          <EditButton onClick={handleEditClick} />
         </div>
       </td>
     </tr>
