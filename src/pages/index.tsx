@@ -2,30 +2,37 @@ import Head from 'next/head';
 import styles from '@/styles/Home.module.css';
 
 import { getUsers } from '@/services/users-api';
-import { User } from '@/types';
+import { UserFullData } from '@/types';
 import React, { createContext, useEffect, useState } from 'react';
-import { UserDelete, UserList } from '@/components/user';
+import { UserDelete, UserForm, UserList } from '@/components/user';
 import { Header } from '@/components/ui';
 import { Modal } from '@/components/ui/modal';
 
 interface HomeProps {
-  fetchedUsers: User[];
+  fetchedUsers: UserFullData[];
 }
 
 interface IAppContext {
-  setUsers: (users: User[]) => void;
+  setUsers: (users: UserFullData[]) => void;
   setCrudAction: (action: string) => void;
-  selectedUser: User;
-  setSelectedUser: (user: User) => void;
+  selectedUser: UserFullData;
+  setSelectedUser: (user: UserFullData) => void;
+  deselectUser: () => void;
 }
 
-const userInitialValues: User = {
+const userInitialValues: UserFullData = {
   id: 0,
   firstname: '',
   lastname: '',
   email: '',
   birth_date: '',
-  address: 0,
+  address: {
+    id: 0,
+    street: '',
+    city: '',
+    country: null,
+    postal_code: '',
+  },
 };
 
 export const AppContext = createContext<IAppContext>({
@@ -33,14 +40,20 @@ export const AppContext = createContext<IAppContext>({
   setCrudAction: () => {},
   selectedUser: userInitialValues,
   setSelectedUser: () => {},
+  deselectUser: () => {},
 });
 
 export default function Home({ fetchedUsers }: HomeProps) {
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<UserFullData[]>([]);
   const [usersLoaded, setUsersLoaded] = useState<boolean>(false);
   const [crudAction, setCrudAction] = useState<string>('');
   const [modalContent, setModalContent] = useState<JSX.Element>(<></>);
-  const [selectedUser, setSelectedUser] = useState<User>(userInitialValues);
+  const [selectedUser, setSelectedUser] =
+    useState<UserFullData>(userInitialValues);
+
+  const deselectUser = () => {
+    setSelectedUser(userInitialValues);
+  };
 
   useEffect(() => {
     if (fetchedUsers) {
@@ -53,14 +66,22 @@ export default function Home({ fetchedUsers }: HomeProps) {
     if (crudAction === 'user-delete') {
       setModalContent(<UserDelete />);
     } else if (crudAction === 'user-edit') {
+      setModalContent(<UserForm user={selectedUser} />);
     } else if (crudAction === 'user-details') {
-    } else if (crudAction === 'user-form') {
+    } else if (crudAction === 'user-create') {
+      setModalContent(<UserForm />);
     }
-  }, [crudAction]);
+  }, [crudAction, selectedUser]);
 
   return (
     <AppContext.Provider
-      value={{ setUsers, setCrudAction, selectedUser, setSelectedUser }}
+      value={{
+        setUsers,
+        setCrudAction,
+        selectedUser,
+        setSelectedUser,
+        deselectUser,
+      }}
     >
       <Head>
         <title>Users List</title>
@@ -78,6 +99,6 @@ export default function Home({ fetchedUsers }: HomeProps) {
 }
 
 export const getServerSideProps = async () => {
-  const usersData: User[] = await getUsers();
+  const usersData: UserFullData[] = await getUsers();
   return { props: { fetchedUsers: usersData } };
 };

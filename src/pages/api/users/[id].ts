@@ -1,4 +1,5 @@
 import supabase from '@/lib/db/supabase';
+import { UserFullData } from '@/types';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
@@ -13,12 +14,16 @@ export default async function handler(
   if (method === 'GET') {
     const { data, error } = await supabase
       .from('users')
-      .select('*, addresses(*)')
+      .select('*, address:addresses(*)')
       .eq('id', id)
       .single();
 
     if (error) {
       res.status(500).json({ error: error.message });
+    }
+
+    if (!data) {
+      res.status(404).json({ error: 'User not found' });
     }
 
     res.status(200).json(data);
