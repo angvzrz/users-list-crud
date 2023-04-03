@@ -1,17 +1,19 @@
-import { User } from '@/types';
+import { User, UserFullData } from '@/types';
 import { useEffect, useState } from 'react';
 import { Caption } from './caption';
 import { UserRow } from './user-row/user-row';
 
 interface UserListProps {
-  users: User[];
+  users: UserFullData[];
 }
 
 export function UserList({ users }: UserListProps) {
   const [userRows, setUserRows] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
-    const rows = users.map((user) => <UserRow key={user.id} user={user} />);
+    const rows: JSX.Element[] = users.map((user) => (
+      <UserRow key={user.id} user={user} />
+    ));
     setUserRows(rows);
   }, [users]);
 
