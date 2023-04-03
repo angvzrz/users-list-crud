@@ -12,6 +12,11 @@ export function UserRow({ user }: UserRowProps) {
   const { firstname, lastname, email, birth_date } = user;
   const fullName = firstname + ' ' + lastname;
 
+  const handleUserClick = () => {
+    setCrudAction('user-detail');
+    setSelectedUser(user);
+  };
+
   const handleDeleteClick = () => {
     setCrudAction('user-delete');
     setSelectedUser(user);
@@ -24,7 +29,12 @@ export function UserRow({ user }: UserRowProps) {
 
   return (
     <tr className="hover:bg-gray-50">
-      <td className="px-4 py-6">{fullName}</td>
+      <td
+        onClick={handleUserClick}
+        className="cursor-pointer px-4 py-6 font-medium text-slate-900"
+      >
+        {fullName}
+      </td>
       <td className="px-4 py-6">{email}</td>
       <td className="px-4 py-6">{birth_date}</td>
       <td className="px-4 py-6">

@@ -4,7 +4,7 @@ import styles from '@/styles/Home.module.css';
 import { getUsers } from '@/services/users-api';
 import { UserFullData } from '@/types';
 import React, { createContext, useEffect, useState } from 'react';
-import { UserDelete, UserForm, UserList } from '@/components/user';
+import { UserDelete, UserDetail, UserForm, UserList } from '@/components/user';
 import { Header } from '@/components/ui';
 import { Modal } from '@/components/ui/modal';
 
@@ -67,7 +67,8 @@ export default function Home({ fetchedUsers }: HomeProps) {
       setModalContent(<UserDelete />);
     } else if (crudAction === 'user-edit') {
       setModalContent(<UserForm user={selectedUser} />);
-    } else if (crudAction === 'user-details') {
+    } else if (crudAction === 'user-detail') {
+      setModalContent(<UserDetail user={selectedUser} />);
     } else if (crudAction === 'user-create') {
       setModalContent(<UserForm />);
     }
