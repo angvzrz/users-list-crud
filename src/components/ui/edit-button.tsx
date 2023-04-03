@@ -1,8 +1,12 @@
 import { EditIcon } from './edit-icon';
 
-export function EditButton() {
+interface EditButtonProps {
+  onClick: () => void;
+}
+
+export function EditButton({ onClick }: EditButtonProps) {
   return (
-    <button>
+    <button onClick={onClick}>
       <EditIcon classes="w-6 h-6" />
     </button>
   );
