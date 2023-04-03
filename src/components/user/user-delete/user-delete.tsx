@@ -4,7 +4,8 @@ import { deleteUser, getUsers } from '@/services/users-api';
 import { useContext } from 'react';
 
 export function UserDelete() {
-  const { setUsers, setCrudAction, selectedUser } = useContext(AppContext);
+  const { setUsers, setCrudAction, selectedUser, deselectUser } =
+    useContext(AppContext);
 
   const handleCancelClick = () => {
     setCrudAction('');
@@ -13,7 +14,10 @@ export function UserDelete() {
   const handleDeleteClick = () => {
     deleteUser(selectedUser.id)
       .then(() => getUsers().then((data) => setUsers(data)))
-      .finally(() => setCrudAction(''));
+      .finally(() => {
+        setCrudAction('');
+        deselectUser();
+      });
   };
 
   return (

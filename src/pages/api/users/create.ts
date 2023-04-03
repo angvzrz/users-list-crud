@@ -1,5 +1,5 @@
 import supabase from '@/lib/db/supabase';
-import { CreateUserBody } from '@/types';
+import { ICreateUserBody } from '@/types';
 import { NextApiRequest, NextApiResponse } from 'next';
 import crypto from 'crypto';
 
@@ -12,7 +12,7 @@ export default async function handler(
     return;
   }
 
-  const { user, address }: CreateUserBody = req.body;
+  const { user, address }: ICreateUserBody = req.body;
   const newId: number = Math.abs(crypto.getRandomValues(new Int32Array(1))[0]);
   user.id = newId;
   user.address = user.id;
