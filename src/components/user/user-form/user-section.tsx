@@ -9,8 +9,10 @@ interface UserSectionProps {
 
 export function UserSection({ user, handleChange }: UserSectionProps) {
   return (
-    <section className="flex flex-col gap-3">
-      <h2 className="mb-4 text-3xl font-semibold text-amber-600">User</h2>
+    <fieldset className="flex flex-col gap-3">
+      <legend className="mb-4 text-3xl font-semibold text-amber-600">
+        User
+      </legend>
       <div className="flex w-full gap-2">
         <TextInput
           name="firstname"
@@ -39,6 +41,6 @@ export function UserSection({ user, handleChange }: UserSectionProps) {
         initialValue={user?.birth_date as string}
         onChange={handleChange}
       />
-    </section>
+    </fieldset>
   );
 }
