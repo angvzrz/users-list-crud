@@ -1,35 +1,21 @@
-# codechallenge-React-s
+# Users List CRUD
 
-**CODE CHALLENGE**
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-REQUEREMIENTOS DEL CODE CHALLENGE:
-- Simular un backend ( RESTful) de usuarios usando el swagger disponible en	la siguiente url: https://gitlab.com/cloudappi/code-challenge-front/blob/master/swagger.yaml
-- Desarrollar los servicios (RESTful) React	para conectarse	al "backend".
-- Desarrollar una interfaz en React que permita listar, crear, editar y eliminar usuarios, la página de inicio deberá ser el listado de usuarios y con botones para acceder a las funcionalidades mencionadas anteriormente.
+## Getting Started
 
-No es necesario realizar un	backend	real sin embargo cada candidato	es libre de implementarlo como desee,inclusive	usando	servicios de terceros.
+First, run the development server:
 
-Por	otro	lado,	se	valorará:
-- Patrones y estilo de desarrollo de front. Buenas prácticas, limpieza del código, test unitarios y e2e.
-- Maquetación del proyecto
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
 
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-**ENTREGA**
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/]
 
-El tiempo de desarrollo es de una semana pero mucho mejor si nos lo puedes enviar antes.
-
-Se debe entregar:
-
-- Url con la aplicación desplegada.
-- Código fuente.
-- Postman de prueba.
-
-
-**RECUERDA**
-
-- La evaluación la realizarán nuestros ninja masters, gente con mucha experiencia.
-- Según tu calificación, recibirás un diploma de ninja
-
-
-
-
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
