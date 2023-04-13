@@ -1,5 +1,5 @@
-import { createClient } from "@supabase/supabase-js";
-import { Database } from "./types";
+import { createClient } from '@supabase/supabase-js';
+import { Database } from './types';
 
 const supabaseUrl: string = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseKey: string = process.env.NEXT_PUBLIC_SUPABASE_KEY || '';

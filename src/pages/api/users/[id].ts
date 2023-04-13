@@ -28,10 +28,7 @@ export default async function handler(
 
     res.status(200).json(data);
   } else if (method === 'PUT') {
-    const {
-      query: { id },
-      body,
-    } = req;
+    const { body } = req;
 
     const { error: updateUserError } = await supabase
       .from('users')
@@ -55,7 +52,7 @@ export default async function handler(
 
     res.status(200).json('User data updated');
   } else if (method === 'DELETE') {
-    const { data: deletedUser, error: deleteError } = await supabase
+    const { error: deleteError } = await supabase
       .from('users')
       .delete()
       .eq('id', id);

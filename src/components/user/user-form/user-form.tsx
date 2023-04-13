@@ -19,7 +19,8 @@ export function UserForm({ user }: UserFormProps) {
   ) => {
     const userAddressProperty: string = event.target.name;
     const inputValue: string = event.target.value;
-    let profileProperty: string = '';
+
+    let profileProperty = '';
 
     if (form?.address) {
       profileProperty =
@@ -55,19 +56,11 @@ export function UserForm({ user }: UserFormProps) {
     }
   };
 
-  const handleCloseClick = () => {
-    deselectUser();
-    setCrudAction('');
-  };
-
   return (
     <form
       onSubmit={handleSubmit}
       className="max-h-1/2 flex max-w-lg flex-col gap-2 p-5"
     >
-      <div onClick={handleCloseClick} className="inline w-full cursor-pointer">
-        <span className="relative float-right text-4xl">&times;</span>
-      </div>
       <UserSection user={user} handleChange={handleChange} />
       <AddressSection user={user} handleChange={handleChange} />
       <button
