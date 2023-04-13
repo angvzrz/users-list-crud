@@ -19,6 +19,7 @@ export function UserForm({ user }: UserFormProps) {
   ) => {
     const userAddressProperty: string = event.target.name;
     const inputValue: string = event.target.value;
+
     let profileProperty = '';
 
     if (form?.address) {
