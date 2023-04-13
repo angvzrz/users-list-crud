@@ -36,11 +36,19 @@ const userInitialValues: UserFullData = {
 };
 
 export const AppContext = createContext<IAppContext>({
-  setUsers: () => {},
-  setCrudAction: () => {},
+  setUsers: () => {
+    // receive useState hook for setting the list of users
+  },
+  setCrudAction: () => {
+    // receive useState hook for setting the intended CRUD action
+  },
   selectedUser: userInitialValues,
-  setSelectedUser: () => {},
-  deselectUser: () => {},
+  setSelectedUser: () => {
+    // receive useState hook for setting the user to be modified
+  },
+  deselectUser: () => {
+    // receive cleanup function that is called when the operation with user is finished
+  },
 });
 
 export default function Home({ fetchedUsers }: HomeProps) {

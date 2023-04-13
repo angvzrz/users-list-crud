@@ -38,5 +38,5 @@ export function useForm(user: UserFullData | undefined) {
     }
   }, [user]);
 
-  return {form, setForm};
+  return { form, setForm };
 }

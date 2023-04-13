@@ -12,8 +12,8 @@ export interface UserFullData extends Omit<User, 'address'> {
   address: Address;
 }
 
-interface IUserNewData extends Omit<Partial<User>, 'id' | 'address'> {}
-interface IAddressNewData extends Omit<Partial<Address>, 'id'> {}
+type IUserNewData = Omit<Partial<User>, 'id' | 'address'>;
+type IAddressNewData = Omit<Partial<Address>, 'id'>;
 export interface IProfileNewData {
   user?: IUserNewData;
   address?: IAddressNewData;
