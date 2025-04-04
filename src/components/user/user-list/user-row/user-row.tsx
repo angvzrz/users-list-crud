@@ -21,7 +21,7 @@ export function UserRow({ user }: UserRowProps) {
     <tr className="hover:bg-gray-50">
       <td
         onClick={() => handleClick('user-detail')}
-        className="cursor-pointer px-4 py-6 font-medium text-slate-900"
+        className="cursor-pointer px-4 py-6 font-medium text-slate-900 hover:underline"
       >
         {fullName}
       </td>

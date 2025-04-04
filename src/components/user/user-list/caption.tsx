@@ -14,7 +14,7 @@ export function Caption() {
         <h2 className="text-2xl font-bold">Users List</h2>
         <button
           onClick={handleClick}
-          className="relative rounded bg-amber-500 p-2 text-white"
+          className="relative rounded bg-amber-500 p-2 text-white hover:bg-amber-600"
         >
           ADD NEW USER
         </button>
