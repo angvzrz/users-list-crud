@@ -9,7 +9,7 @@ interface UserSectionProps {
 
 export function UserSection({ user, handleChange }: UserSectionProps) {
   return (
-    <fieldset className="flex flex-col gap-3">
+    <fieldset className="mb-3 flex flex-col gap-3">
       <legend className="mb-4 text-3xl font-semibold text-amber-600">
         User
       </legend>
