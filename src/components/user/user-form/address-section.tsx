@@ -13,8 +13,8 @@ const countryCodes: string[] = ['DE', 'US', 'UK', 'ES'];
 
 export function AddressSection({ user, handleChange }: AddressSectionProps) {
   return (
-    <section className="flex flex-col gap-3">
-      <h2 className="mb-3 text-3xl font-semibold text-amber-600">Address</h2>
+    <fieldset className="flex flex-col gap-3">
+      <legend className="mb-3 text-3xl font-semibold text-amber-600">Address</legend>
       <TextInput
         name="city"
         type="text"
@@ -47,6 +47,6 @@ export function AddressSection({ user, handleChange }: AddressSectionProps) {
         label="Zip Code"
         onChange={handleChange}
       />
-    </section>
+    </fieldset>
   );
 }
