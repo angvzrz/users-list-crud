@@ -5,6 +5,7 @@ interface InputProps {
   type: 'text' | 'email';
   initialValue?: string;
   required?: boolean;
+  label?: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -13,10 +14,11 @@ export function TextInput({
   type,
   initialValue,
   required,
+  label,
   onChange,
 }: InputProps) {
   return (
-    <label htmlFor={name} className="">
+    <label htmlFor={name}>
       <input
         name={name}
         type={type}
@@ -25,7 +27,7 @@ export function TextInput({
         onChange={onChange}
         className="w-full rounded-lg border border-slate-400 p-3"
       />
-      <span>{name}</span>
+      <span>{label}</span>
     </label>
   );
 }

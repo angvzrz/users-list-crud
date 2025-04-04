@@ -3,19 +3,26 @@ import { ChangeEvent } from 'react';
 interface DateInputProps {
   name: string;
   initialValue: string;
+  label?: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export function DateInput({ name, initialValue, onChange }: DateInputProps) {
+export function DateInput({
+  name,
+  initialValue,
+  label,
+  onChange,
+}: DateInputProps) {
   return (
-    <label htmlFor="birth-date" className="mb-3">
+    <span>
       <input
         name={name}
         type="date"
         defaultValue={initialValue}
         onChange={onChange}
-        className="rounded-lg border border-slate-400 p-3"
+        className="block rounded-lg border border-slate-400 p-3"
       />
-    </label>
+      <label htmlFor={name}>{label}</label>
+    </span>
   );
 }

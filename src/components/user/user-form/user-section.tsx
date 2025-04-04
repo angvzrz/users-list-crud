@@ -18,6 +18,7 @@ export function UserSection({ user, handleChange }: UserSectionProps) {
           name="firstname"
           type="text"
           required={true}
+          label="First Name"
           initialValue={user?.firstname ?? ''}
           onChange={handleChange}
         />
@@ -25,6 +26,7 @@ export function UserSection({ user, handleChange }: UserSectionProps) {
           name="lastname"
           type="text"
           required={true}
+          label="Last Name"
           initialValue={user?.lastname ?? ''}
           onChange={handleChange}
         />
@@ -33,12 +35,14 @@ export function UserSection({ user, handleChange }: UserSectionProps) {
         name="email"
         type="email"
         required={true}
+        label="Email"
         initialValue={user?.email ?? ''}
         onChange={handleChange}
       />
       <DateInput
         name="birth_date"
         initialValue={user?.birth_date as string}
+        label="Birth Date"
         onChange={handleChange}
       />
     </fieldset>
