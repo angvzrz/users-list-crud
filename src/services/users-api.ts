@@ -2,8 +2,7 @@ import { IProfileNewData, UserFullData } from '@/types';
 import axios from 'axios';
 
 export async function getUsers() {
-  const baseUrl: string = process.env.NEXT_PUBLIC_BASE_URL ?? '';
-  const response = await axios.get<UserFullData[]>(`${baseUrl}/api/users`);
+  const response = await axios.get<UserFullData[]>(`/api/users`);
   return response.data;
 }
 

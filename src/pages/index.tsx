@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import styles from '@/styles/Home.module.css';
 
-import { getUsers } from '@/services/users-api';
+import supabase from '@/lib/db/supabase';
 import { UserFullData } from '@/types';
 import React, { createContext, useEffect, useState } from 'react';
 import { UserDelete, UserDetail, UserForm, UserList } from '@/components/user';
@@ -108,6 +108,11 @@ export default function Home({ fetchedUsers }: HomeProps) {
 }
 
 export const getServerSideProps = async () => {
-  const usersData: UserFullData[] = await getUsers();
-  return { props: { fetchedUsers: usersData } };
+  const { data, error } = await supabase
+    .from('users')
+    .select('*, address:addresses(*)');
+
+  if (error) throw Error(error.message);
+
+  return { props: { fetchedUsers: data } };
 };
