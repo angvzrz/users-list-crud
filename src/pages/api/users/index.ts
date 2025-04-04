@@ -1,5 +1,4 @@
 import supabase from '@/lib/db/supabase';
-import { User } from '@/types';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
