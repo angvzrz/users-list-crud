@@ -65,7 +65,7 @@ export function UserForm({ user }: UserFormProps) {
       <AddressSection user={user} handleChange={handleChange} />
       <button
         type="submit"
-        className="mt-5 cursor-pointer rounded bg-amber-500 p-2 text-white"
+        className="mt-5 cursor-pointer rounded bg-amber-500 p-2 text-white hover:bg-amber-600"
       >
         Confirm
       </button>
